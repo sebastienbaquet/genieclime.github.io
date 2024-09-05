@@ -1,0 +1,192 @@
+/* Style global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #333;
+  color: white;
+  padding: 0 20px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links li {
+  margin: 0 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Menu burger */
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+/* Conteneur du slider */
+.slider {
+  width: 100%; /* Largeur du conteneur du slider */
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+/* Conteneur des slides */
+.slides {
+  display: flex;
+  width: calc(20% * 5); /* Largeur totale basée sur le nombre d'images */
+  animation: slide 30s infinite linear; /* Animation horizontale par défaut */
+}
+
+/* Style pour chaque slide */
+.slide {
+  width: 20%; /* Chaque image prend 20% de la largeur totale du slider */
+  flex-shrink: 0; /* Évite que les images se réduisent */
+  padding: 0 10px; /* Espace entre les images */
+  box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+}
+
+/* Style pour les images */
+.slide img {
+  width: 100%; /* Les images remplissent toute la largeur du conteneur de la slide */
+  height: 300px; /* Hauteur fixe pour toutes les images */
+  object-fit: cover; /* Remplit le conteneur sans déformation */
+  display: block; /* Élimine l'espace sous l'image */
+}
+
+/* Définition de l'animation horizontale */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Menu déroulant */
+.menu-overlay {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  top: 0;
+  right: 20%;
+  width: 10%;
+  height: 20%;
+  /* Fond semi-transparent */
+  z-index: 1; /* S'assure qu'il est au-dessus des autres éléments */
+}
+
+.menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px; /* Largeur de la fenêtre du menu */
+  height: 100%;
+  background: white;
+  color: #333;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%); /* Cache le menu hors de l'écran */
+  transition: transform 0.3s ease; /* Transition fluide */
+}
+
+.menu-content.active {
+  transform: translateX(0); /* Affiche le menu */
+}
+
+.menu-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-links li {
+  margin-bottom: 20px;
+}
+
+.menu-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Responsivité */
+/* Affichage des éléments de menu en mode bureau */
+@media (min-width: 768px) {
+  .burger {
+    display: none; /* Caché sur les grands écrans */
+  }
+}
+
+/* Affichage du menu burger en mode téléphone */
+@media screen and (max-width: 580px) {
+  .nav-links {
+    display: none; /* Cache le menu de navigation */
+  }
+  .burger {
+    display: block; /* Affiche le bouton burger */
+  }
+
+  /* Style du slider en mode vertical */
+  .slides {
+    flex-direction: column; /* Change la direction des éléments en colonne */
+    width: 100%; /* La largeur est maintenant 100% du conteneur */
+    height: calc(300% + 40px); /* Hauteur totale pour les images avec espace */
+    animation: slide-vertical 30s linear infinite; /* Animation verticale */
+  }
+
+  .slide {
+    width: 100%; /* Chaque image prend 100% de la largeur du conteneur */
+    height: 300px; /* Hauteur fixe pour chaque image */
+    margin-bottom: 20px; /* Espace entre les images */
+  }
+
+  .slide img {
+    width: 100%; /* Les images remplissent toute la largeur du conteneur de la slide */
+    height: 100%; /* Les images remplissent toute la hauteur du conteneur de la slide */
+    object-fit: cover; /* Remplit le conteneur sans déformation */
+  }
+}
+
+/* Définition de l'animation verticale */
+@keyframes slide-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  } /* Déplace toutes les images vers le haut */
+}
